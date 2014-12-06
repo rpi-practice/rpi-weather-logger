@@ -13,7 +13,7 @@ class CoreTempLogger:
         #get cursor
         cur = conn.cursor()
         #execute query
-        cur.execute("INSERT INTO ltemp VALUES (timestamp, core_temp)")
+        cur.execute("INSERT INTO ltemps VALUES (timestamp, core_temp)")
         #commit db
         conn.commit()
         #close connection
