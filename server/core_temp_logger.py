@@ -12,12 +12,17 @@ class CoreTempLogger:
         conn = sqlite3.connect("weather_data.db")
         #get cursor
         cur = conn.cursor()
-        #execute query
-        cur.execute("INSERT INTO ltemps VALUES (timestamp, core_temp)")
-        #commit db
-        conn.commit()
-        #close connection
-        conn.close()
+        try:
+            #execute query
+            cur.execute("INSERT INTO ltemps VALUES (timestamp, core_temp)")
+            #commit db
+            conn.commit()
+        except Exception as e:
+            conn.rollback()
+            print(e)
+        finally:
+            #close connection
+            conn.close()
 
     def get_core_temp(self):
         """Get CPU temperature"""
