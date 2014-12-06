@@ -1,3 +1,4 @@
+import os
 import sqlite3
 import subprocess
 import time
@@ -9,7 +10,8 @@ class CoreTempLogger:
         timestamp = int(time.time())
 
         #open db connection
-        conn = sqlite3.connect("weather_data.db")
+        dir = os.path.dirname(os.path.realpath(__file__))
+        conn = sqlite3.connect(os.path.join(dir, "weather_data.db"))
         #get cursor
         cur = conn.cursor()
         try:
