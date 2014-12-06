@@ -6,9 +6,9 @@ class CoreTempLogger:
         """Logs core temperature to sqlite DB."""
         pass
 
-    def get_core_tmp(self):
+    def get_core_temp(self):
         """Get CPU temperature"""
-        core_tmp = subprocess.check_output(["/opt/vc/bin/vcgencmd",
+        core_temp = subprocess.check_output(["/opt/vc/bin/vcgencmd",
                                             "measure_temp"]).strip()
         #core_temp value is in format temp=XX.X'C.
         #Fixing core_temp to required format.
@@ -16,4 +16,4 @@ class CoreTempLogger:
         return float(core_temp)
 
 if __name__=="__main__":
-    print(CoreTempLogger().get_core_tmp())
+    print(CoreTempLogger().get_core_temp())
