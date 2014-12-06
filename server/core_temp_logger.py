@@ -16,7 +16,7 @@ class CoreTempLogger:
         cur = conn.cursor()
         try:
             #execute query
-            cur.execute("INSERT INTO ltemps VALUES (timestamp, core_temp)")
+            cur.execute("INSERT INTO ltemps VALUES ({0}, {1})".format(timestamp,core_temp))
             #commit db
             conn.commit()
         except Exception as e:
