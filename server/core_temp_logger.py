@@ -10,8 +10,8 @@ class CoreTempLogger:
         timestamp = int(time.time())
 
         #open db connection
-        dir = os.path.dirname(os.path.realpath(__file__))
-        conn = sqlite3.connect(os.path.join(dir, "weather_data.db"))
+        db_dir = os.path.dirname(os.path.realpath(__file__))
+        conn = sqlite3.connect(os.path.join(db_dir, "weather_data.db"))
         #get cursor
         cur = conn.cursor()
         try:

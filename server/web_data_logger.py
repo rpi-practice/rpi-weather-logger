@@ -1,17 +1,21 @@
 from query_weather_data import QueryWeatherData as qwd
 import sqlite3
+import os
 
-class TempLogger(object):
+class WebDataLogger(object):
     def __init__(self):
         pass
 
     def commit_data(self, data):
-        db = "weather_data.db"
+        db_dir = os.path.dirname(os.path.realpath(__file__))
+        db = os.path.join(db_dir, "weather_data.db")
         table = "web_data"
+        print(data)
 
         conn = sqlite3.connect(db)
         cur = conn.cursor()
-        cur.execute("""INSERT INTO {0} VALUES 
+        try:
+            cur.execute("""INSERT INTO {0} VALUES 
                      (
                      {1},
                      {2},
@@ -27,10 +31,16 @@ class TempLogger(object):
                      data['humidity'],
                      data['pres'],
                      data['wind'],
-                     data['cloud'],
+                     data['clouds']
                      ))
+            conn.commit()
+        except Exception as e:
+            conn.rollback()
+            print(e)
+        finally:
+            conn.close()
 
 if __name__=="__main__":
-    tl = TempLogger()
+    tl = WebDataLogger()
     tl.commit_data(qwd().decorated_data())
 
