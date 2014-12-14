@@ -15,6 +15,5 @@ class DBConnect:
         if exc_type:
             print(exc_value)
             self.conn.rollback()
-            return false
         self.conn.close()
 
