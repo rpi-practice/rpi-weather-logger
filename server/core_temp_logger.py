@@ -6,18 +6,18 @@ import time
 class CoreTempLogger:
     def __init__(self):
         self.table = "ltemps"
-
-        with DBConnect(self.table) as cur:
-            cur.execute("CREATE TABLE {0} (timestamp NUMERIC, core_temp NUMERIC))".format(self.table))
+        self.db = "weather_data.db"
+        with DBConnect(self.db) as cur:
+            cur.execute("CREATE TABLE IF NOT EXISTS {0} (timestamp NUMERIC, core_temp NUMERIC))".format(self.table))
 
     def log_temp(self):
         """Logs core temperature to sqlite DB."""
         core_temp = self.get_core_temp()
         timestamp = int(time.time())
 
-        with DBConnect(self.table) as cur:
+        with DBConnect(self.db) as cur:
             #execute query
-            cur.execute("INSERT INTO {0} VALUES ({1}, {2})".format(self.table, timestamp, core_temp))
+            cur.execute("INSERT INTO {0} VALUES (?, ?)".format(self.table),(timestamp, core_temp,))
 
     def get_core_temp(self):
         """Get CPU temperature"""
