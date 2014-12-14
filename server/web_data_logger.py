@@ -18,7 +18,6 @@ class WebDataLogger(object):
                          clouds NUMERIC)""".format(self.table))
 
     def commit_data(self, data):
-        print(data)
         with DBConnect(self.db) as cur: 
             cur.execute("""INSERT INTO {0}(timestamp,
                      loc_id, temp, humidity,
