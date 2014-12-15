@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<!--<script src="../js/highcharts-custom.js"></script>-->
+<script src="http://code.highcharts.com/stock/highstock.js"></script>
+<script src="http://code.highcharts.com/stock/modules/exporting.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<!--<script src="../js/chart.js"></script>-->
+<script>
+function get_data(param) {
+$.get(param, function (response) {
+data = jQuery.parseJSON(response);
+alert(data);
+// Create the chart
+$('#container').highcharts('StockChart', {
+rangeSelector : {
+selected : 1
+},
+title : {
+text : 'Weather Data'
+},
+series : [{
+name : 'Temperature',
+data : data,
+tooltip: {
+valueDecimals: 2
+}
+}]
+});
+});
+}
+</script>
+</head>
+
+<body onload='get_data("temp");'>
+<div id="container" style="height: 400px; min-width: 310px"></div>
+</body>
+</html>
