@@ -23,7 +23,7 @@ class WebDataLogger(object):
                      loc_id, temp, humidity,
                      pres, wind, clouds) VALUES 
                      ( ?, ?, ?, ?, ?, ?, ?)""".format(self.table), (
-                     data['timestamp'], data['loc_id'],
+                     data['timestamp']*1000, data['loc_id'],
                      data['temp'], data['humidity'],
                      data['pres'], data['wind'],
                      data['clouds'])

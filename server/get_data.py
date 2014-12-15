@@ -1,6 +1,6 @@
 from db_connect import DBConnect
 
-class WebData:
+class GetData:
     def __init__(self):
         self.db = "weather_data.db"
         self.table = "web_data"
@@ -36,5 +36,5 @@ class WebData:
             return cur.fetchall()
 
 if __name__=="__main__":
-    print(WebData().temp)
+    print(GetData().temp)
 
