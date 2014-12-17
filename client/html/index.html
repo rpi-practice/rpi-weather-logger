@@ -3,14 +3,17 @@
 <head>
 <script src="../js/highcharts-custom.js"></script>
 <!--<script src="http://code.highcharts.com/stock/highstock.js"></script>-->
-<!--<script src="http://code.highcharts.com/stock/modules/exporting.js"></script>
-<!--<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<!--<script src="http://code.highcharts.com/stock/modules/exporting.js"></script>-->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <!--<script src="../js/chart.js"></script>-->
 <script>
-function get_data(param) {
-$.get(param, function (response) {
-data = jQuery.parseJSON(response);
-alert(data);
+$(document).ready(function(){
+$('button').click(function(){
+$.ajax({url: 'test',
+async: false,
+success: function (result, status, xhr) {
+data = jQuery.parseJSON(result);
+alert(data['data']);
 // Create the chart
 $('#container').highcharts('StockChart', {
 rangeSelector : {
@@ -21,18 +24,23 @@ text : 'Weather Data'
 },
 series : [{
 name : 'Temperature',
-data : data,
+data : data['data'],
 tooltip: {
 valueDecimals: 2
 }
 }]
 });
+},
+error: function(xhr, status, error){
+	alert(error);
+}});
 });
-}
+});
 </script>
 </head>
 
-<body onload='get_data("temp");'>
+<body> 
+<button>Press</button>
 <div id="container" style="height: 400px; min-width: 310px"></div>
 </body>
 </html>

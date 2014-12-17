@@ -9,7 +9,7 @@ from get_data import GetData
 class Server(object):
     @cherrypy.expose
     def temp(self):
-        return json.dumps(GetData().temp)
+        return json.dumps({'data':GetData().temp})
 
 s_conf = os.path.join(os.path.dirname(__file__), 'server.conf')
 
