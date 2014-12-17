@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<<<<<<< .merge_file_vzEuBT
 <script src="../js/highcharts-custom.js"></script>
 <!--<script src="http://code.highcharts.com/stock/highstock.js"></script>-->
 <!--<script src="http://code.highcharts.com/stock/modules/exporting.js"></script>-->
@@ -14,6 +15,18 @@ async: false,
 success: function (result, status, xhr) {
 data = jQuery.parseJSON(result);
 alert(data['data']);
+=======
+<!--<script src="../js/highcharts-custom.js"></script>-->
+<script src="http://code.highcharts.com/stock/highstock.js"></script>
+<script src="http://code.highcharts.com/stock/modules/exporting.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<!--<script src="../js/chart.js"></script>-->
+<script>
+function get_data(param) {
+$.get(param, function (response) {
+data = jQuery.parseJSON(response);
+alert(data);
+>>>>>>> .merge_file_2bEyOL
 // Create the chart
 $('#container').highcharts('StockChart', {
 rangeSelector : {
@@ -24,12 +37,17 @@ text : 'Weather Data'
 },
 series : [{
 name : 'Temperature',
+<<<<<<< .merge_file_vzEuBT
 data : data['data'],
+=======
+data : data,
+>>>>>>> .merge_file_2bEyOL
 tooltip: {
 valueDecimals: 2
 }
 }]
 });
+<<<<<<< .merge_file_vzEuBT
 },
 error: function(xhr, status, error){
 	alert(error);
@@ -41,6 +59,14 @@ error: function(xhr, status, error){
 
 <body> 
 <button>Press</button>
+=======
+});
+}
+</script>
+</head>
+
+<body onload='get_data("temp");'>
+>>>>>>> .merge_file_2bEyOL
 <div id="container" style="height: 400px; min-width: 310px"></div>
 </body>
 </html>
