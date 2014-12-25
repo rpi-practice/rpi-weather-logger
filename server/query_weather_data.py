@@ -5,7 +5,7 @@ class QueryWeatherData:
     def __init__(self):
         self.url = "api.openweathermap.org"
         self.path = "/data/2.5/weather"
-        self.query = "?q=pune,in"#&units=metric"
+        self.query = "?q=pune,in&units=metric"
 
     def make_request(self):
         try:
@@ -37,5 +37,4 @@ class QueryWeatherData:
 if __name__ == "__main__":
     q = QueryWeatherData()
     print(q.make_request())
-    #q.decorated_data()
 
