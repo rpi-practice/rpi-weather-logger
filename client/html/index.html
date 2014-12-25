@@ -8,40 +8,11 @@
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <script src="http://code.highcharts.com/stock/highstock.js"></script>
 <script src="http://code.highcharts.com/stock/modules/exporting.js"></script>
-<script>
-function graph(){
-$.ajax({url: 'temp',
-async: false,
-contentType: false,
-processData: false,
-type: 'GET',
-success: function (result, status, xhr) {
-data = jQuery.parseJSON(result);
-// Create the chart
-$('#container').highcharts('StockChart', {
-rangeSelector : {
-selected : 1
-},
-title : {
-text : 'Weather Data'
-},
-series : [{
-name : 'Temperature',
-data : data,
-tooltip: {
-valueDecimals: 2
-}
-}]
-});
-},
-error: function(xhr, status, error){
-	alert(status + "::" + error);
-}});
-}
-</script>
+<script src="../js/chart.js"></script>
+
 </head>
 
-<body onload="graph();"> 
+<body onload="get_data();"> 
 <div id="container" style="height: 400px; min-width: 310px"></div>
 </body>
 </html>
