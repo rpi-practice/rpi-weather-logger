@@ -8,7 +8,7 @@ class CoreTempLogger:
         self.table = "ltemps"
         self.db = "weather_data.db"
         with DBConnect(self.db) as cur:
-            cur.execute("CREATE TABLE IF NOT EXISTS {0} (timestamp NUMERIC, core_temp NUMERIC))".format(self.table))
+            cur.execute("CREATE TABLE IF NOT EXISTS {0} (timestamp NUMERIC, core_temp NUMERIC)".format(self.table))
 
     def log_temp(self):
         """Logs core temperature to sqlite DB."""
@@ -17,7 +17,7 @@ class CoreTempLogger:
 
         with DBConnect(self.db) as cur:
             #execute query
-            cur.execute("INSERT INTO {0} VALUES (?, ?)".format(self.table),(timestamp, core_temp,))
+            cur.execute("INSERT INTO {0} VALUES (?, ?)".format(self.table),(timestamp, core_temp))
 
     def get_core_temp(self):
         """Get CPU temperature"""
