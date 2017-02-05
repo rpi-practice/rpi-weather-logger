@@ -1,3 +1,8 @@
+#!/usr/bin/env python
+
+"""Database updater module"""
+
+# Local imports
 from db_connect import DBConnect
 
 db = "weather_data.db"

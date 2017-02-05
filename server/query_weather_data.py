@@ -1,7 +1,11 @@
+#!/usr/bin/env python
+"""Module to query weather data"""
+
+# Standar imports
 import httplib
 import json
 
-class QueryWeatherData:
+class QueryWeatherData(object):
     def __init__(self):
         self.url = "api.openweathermap.org"
         self.path = "/data/2.5/weather"
